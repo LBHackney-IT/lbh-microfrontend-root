@@ -15,6 +15,9 @@ executors:
   mtfh-executor:
     docker:
       - image: circleci/node:12.9.1-browsers
+  docker-terraform:
+    docker:
+      - image: "hashicorp/terraform:light"
 
 commands:
   assume-role-and-persist-workspace:
@@ -93,6 +96,24 @@ jobs:
       - assume-role-and-persist-workspace:
           aws-account: $AWS_ACCOUNT_PRODUCTION
 
+  terraform-init-and-apply-to-development:
+    executor: docker-terraform
+    steps:
+      - terraform-init-then-apply:
+          environment: "development"
+
+  terraform-init-and-apply-to-staging:
+    executor: docker-terraform
+    steps:
+      - terraform-init-then-apply:
+          environment: "staging"
+
+  terraform-init-and-apply-to-production:
+    executor: docker-terraform
+    steps:
+      - terraform-init-then-apply:
+          environment: "production"
+
   build-deploy-development:
     executor: mtfh-executor
     steps:
@@ -100,7 +121,6 @@ jobs:
       - run:
           name: build
           command: |
-            export REACT_APP_ENV=staging
             yarn run build
       - aws-s3/sync:
           from: build
@@ -117,7 +137,6 @@ jobs:
       - run:
           name: build
           command: |
-            export REACT_APP_ENV=staging
             yarn run build
       - aws-s3/sync:
           from: build
@@ -134,7 +153,6 @@ jobs:
       - run:
           name: build
           command: |
-            export REACT_APP_ENV=production
             yarn run build
       - aws-s3/sync:
           from: build
@@ -157,10 +175,25 @@ workflows:
             branches:
               only:
                 - master
+      - terraform-init-and-apply-to-development:
+          requires:
+            - assume-role-development
+          filters:
+            branches:
+              only:
+                - master
       - build-deploy-development:
           context: api-assume-role-housing-development-context
           requires:
             - assume-role-development
+          filters:
+            branches:
+              only:
+                - master
+      - run-tests:
+          context: api-assume-role-housing-development-context
+          requires:
+            - build-deploy-development
           filters:
             branches:
               only:
@@ -173,6 +206,13 @@ workflows:
             branches:
               only:
                 - release
+      - terraform-init-and-apply-to-staging:
+          requires:
+            - assume-role-staging
+          filters:
+            branches:
+              only:
+                - release
       - build-deploy-staging:
           context: api-assume-role-housing-staging-context
           requires:
@@ -181,18 +221,37 @@ workflows:
             branches:
               only:
                 - release
-      - permit-deploy-production:
-          type: approval
+      - run-tests:
+          context: api-assume-role-housing-staging-context
           requires:
             - build-deploy-staging
-      - assume-role-production:
-          context: api-assume-role-housing-production-context
-          requires:
-            - permit-deploy-production
           filters:
             branches:
               only:
                 - release
+      - permit-deploy-production:
+          type: approval
+          requires:
+            - build-deploy-staging
+      - permit-production-terraform-release:
+          type: approval
+          requires:
+            - deploy-to-staging
+      - assume-role-production:
+          context: api-assume-role-housing-production-context
+          requires:
+            - permit-deploy-production
+            - permit-production-terraform-release
+          filters:
+            branches:
+              only:
+                - release
+      - terraform-init-and-apply-to-production:
+          requires:
+            - assume-role-production
+          filters:
+            branches:
+              only: release
       - build-deploy-production:
           context: api-assume-role-housing-production-context
           requires:
@@ -201,4 +260,11 @@ workflows:
             branches:
               only:
                 - release
-      - run-tests
+      - run-tests:
+          context: api-assume-role-housing-production-context
+          requires:
+            - build-deploy-production
+          filters:
+            branches:
+              only:
+                - release
