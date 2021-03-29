@@ -161,7 +161,6 @@ workflows:
     jobs:
       - install-dependencies
       - run-tests
-
       - assume-role-development:
           context: api-assume-role-housing-development-context
           requires:
@@ -190,7 +189,6 @@ workflows:
     jobs:
       - install-dependencies
       - run-tests
-
       - assume-role-staging:
           context: api-assume-role-housing-staging-context
           requires:
