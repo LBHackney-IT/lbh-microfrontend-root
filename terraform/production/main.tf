@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "frontend-bucket-production" {
-  bucket = "lbh-housing-root-config-production.hackney.gov.uk"
+  bucket = "lbh-housing-tl-root-production.hackney.gov.uk"
   acl    = "public-read"
   versioning {
     enabled = true
