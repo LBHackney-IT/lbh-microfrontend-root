@@ -35,7 +35,7 @@ commands:
           root: "~"
           paths:
             - .aws
-          
+
   terraform-init-then-apply:
     description: "Initializes and applies terraform configuration"
     parameters:
@@ -68,15 +68,6 @@ jobs:
       - persist_to_workspace:
           root: "~/repo"
           paths: .
-
-  run-tests:
-    executor: mtfh-executor
-    steps:
-      - *attach_workspace
-      - run: 
-          name: test
-          command: |
-            yarn test
 
   assume-role-development:
     executor: mtfh-executor
@@ -156,16 +147,26 @@ jobs:
             --cache-control "max-age=86400"
           overwrite: true
 
+  run-tests:
+    executor: mtfh-executor
+    steps:
+      - *attach_workspace
+      - run: 
+          name: test
+          command: |
+            yarn test
+
 workflows:
-  version: 2
-  continuous-delivery:
+  continuous-delivery-development:
     jobs:
       - install-dependencies
+      - run-tests
 
       - assume-role-development:
           context: api-assume-role-housing-development-context
           requires:
             - install-dependencies
+            - run-tests
           filters:
             branches:
               only:
@@ -180,24 +181,21 @@ workflows:
       - build-deploy-development:
           context: api-assume-role-housing-development-context
           requires:
-            - assume-role-development
+            - terraform-init-and-apply-to-development
           filters:
             branches:
               only:
                 - master
-      - run-tests:
-          context: api-assume-role-housing-development-context
-          requires:
-            - build-deploy-development
-          filters:
-            branches:
-              only:
-                - master
+    
+  continuous-delivery-staging-and-production:
+    jobs:
+      - install-dependencies
+      - run-tests
 
       - assume-role-staging:
           context: api-assume-role-housing-staging-context
           requires:
-            - install-dependencies
+            - run-tests
           filters:
             branches:
               only:
@@ -212,32 +210,19 @@ workflows:
       - build-deploy-staging:
           context: api-assume-role-housing-staging-context
           requires:
-            - assume-role-staging
+            - terraform-init-and-apply-to-staging
           filters:
             branches:
               only:
                 - release
-      - run-tests:
-          context: api-assume-role-housing-staging-context
-          requires:
-            - build-deploy-staging
-          filters:
-            branches:
-              only:
-                - release
-                
-      - permit-deploy-production:
-          type: approval
-          requires:
-            - build-deploy-staging
+
       - permit-production-terraform-release:
           type: approval
           requires:
-            - deploy-to-staging
+            - build-deploy-staging
       - assume-role-production:
           context: api-assume-role-housing-production-context
           requires:
-            - permit-deploy-production
             - permit-production-terraform-release
           filters:
             branches:
@@ -249,18 +234,14 @@ workflows:
           filters:
             branches:
               only: release
+      - permit-deploy-production:
+          type: approval
+          requires:
+            - terraform-init-and-apply-to-production
       - build-deploy-production:
           context: api-assume-role-housing-production-context
           requires:
-            - assume-role-production
-          filters:
-            branches:
-              only:
-                - release
-      - run-tests:
-          context: api-assume-role-housing-production-context
-          requires:
-            - build-deploy-production
+            - permit-deploy-production
           filters:
             branches:
               only:
