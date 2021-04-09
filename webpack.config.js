@@ -19,7 +19,6 @@ module.exports = (webpackConfigEnv, argv) => {
       new HtmlWebpackPlugin({
         inject: false,
         template: "src/index.ejs",
-        root: ["D:amidomtfh-app-container-single-spasrc\vali.ejs"],
         templateParameters: {
           isLocal: webpackConfigEnv && webpackConfigEnv.isLocal,
           orgName,

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Root Config</title>
+  <title>Hackney - Housing Tool</title>
 
   <!--
     Remove this if you only support browsers that support async/await.
@@ -49,7 +49,8 @@
   <script type="systemjs-importmap">
     {
       "imports": {
-        "@mtfh/root-config": "//localhost:9000/mtfh-root-config.js"
+        "@mtfh/root-config": "//localhost:9000/mtfh-root-config.js",
+        "@mtfh/search": "//localhost:8500/mtfh-search.js"
       }
     }
   </script>
@@ -76,9 +77,9 @@
         <route default>
           <h1>Welcome to the default page</h1>
         </route>
-        <!-- <route path="login">
-          <application name="@<%- orgName %>/login"></application>
-        </route> -->
+        <route path="search">
+          <application name="@<%- orgName %>/search"></application>
+        </route>
       </main>
     </single-spa-router>
   </template>
