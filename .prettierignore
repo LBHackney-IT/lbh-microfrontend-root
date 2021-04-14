@@ -7,3 +7,11 @@ LICENSE
 *.ejs
 dist
 coverage
+*.tf
+.idea/
+.nvmrc
+.gitattributes
+.editorconfig
+.circleci/config
+.yarn/
+.yarnrc

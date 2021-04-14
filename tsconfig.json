@@ -1,4 +1,7 @@
 {
-  "extends": "ts-config-single-spa",
-  "include": ["src/**/*"]
+    "extends": "ts-config-single-spa",
+    "include": ["src/**/*"],
+    "compilerOptions": {
+        "strict": true
+    }
 }

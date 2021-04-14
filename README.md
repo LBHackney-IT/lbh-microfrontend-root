@@ -6,21 +6,21 @@ This is the root-config app part of the Single SPA Framework Architecture. It wa
 
 ### Running it locally
 
-- `yarn install`
-- `yarn run`
+-   `yarn install`
+-   `yarn run`
 
 ### Production build
 
-- `yarn build`
+-   `yarn build`
 
 ### Testing
 
-- `yarn test`
+-   `yarn test`
 
 ### Resources
 
-- [Hackney Design System](https://design-system.hackney.gov.uk/)
-- [Single SPA Framework](https://single-spa.js.org/)
-- [Typescript](https://www.typescriptlang.org/)
-- [Webpack](https://webpack.js.org/)
-- [EJS Templating](https://ejs.co/)
+-   [Hackney Design System](https://design-system.hackney.gov.uk/)
+-   [Single SPA Framework](https://single-spa.js.org/)
+-   [Typescript](https://www.typescriptlang.org/)
+-   [Webpack](https://webpack.js.org/)
+-   [EJS Templating](https://ejs.co/)
