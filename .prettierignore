@@ -12,6 +12,7 @@ coverage
 .nvmrc
 .gitattributes
 .editorconfig
-.circleci/config
+.circleci/
 .yarn/
 .yarnrc
+node_modules/
