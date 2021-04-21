@@ -21,7 +21,8 @@
         {
             "imports": {
                 "@mtfh/root-config": "//localhost:9000/mtfh-root-config.js",
-                "@mtfh/search": "//localhost:8500/mtfh-search.js"
+                "@mtfh/search": "//localhost:8500/mtfh-search.js",
+                "@mtfh/auth": "//localhost:8080/mtfh-auth.js"
             }
         }
     </script>
@@ -44,6 +45,9 @@
                 </route>
                 <route path="search">
                     <application name="@<%- orgName %>/search"></application>
+                </route>
+                <route path="login">
+                    <application name="@<%- orgName %>/auth"></application>
                 </route>
             </main>
         </single-spa-router>

@@ -2,6 +2,7 @@
     "extends": "ts-config-single-spa",
     "include": ["src/**/*"],
     "compilerOptions": {
-        "strict": true
+        "strict": true,
+        "target": "es2016"
     }
 }
