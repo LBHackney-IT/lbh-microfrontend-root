@@ -5,10 +5,19 @@ import {
 } from 'single-spa-layout';
 import { registerApplication, start } from 'single-spa';
 
-import './styles/global.scss';
+import './root.styles.scss';
 
 const routes = constructRoutes(
-    document.querySelector('#single-spa-layout') as HTMLTemplateElement
+    document.querySelector('#single-spa-layout') as HTMLTemplateElement,
+    {
+        loaders: {
+            header: '<h1>Loading header</h1>',
+        },
+        props: {},
+        errors: {
+            header: '<h1>Failed to load header</h1>',
+        },
+    }
 );
 
 const applications = constructApplications({

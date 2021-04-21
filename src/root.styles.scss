@@ -1,10 +1,22 @@
+@import '~lbh-frontend/lbh/base';
+@import '~lbh-frontend/lbh/core/all';
+@import '~lbh-frontend/lbh/objects/all';
 @import '~lbh-frontend/lbh/settings/colour-palette';
 @import '~lbh-frontend/lbh/helpers/colour';
+
+body {
+    margin: 0;
+}
+
+.mtfh-container {
+    min-height: 32rem;
+}
 
 .mtfh-footer {
     &__menu {
         text-align: center;
     }
+
     &__menu-item {
         display: inline-block;
         margin: 0 3rem 0 0;
@@ -19,11 +31,11 @@
     }
 
     &__section {
-        margin: 0;
-        background-color: lbh-colour('lbh-black');
-        color: lbh-colour('lbh-text-white');
         min-height: 3rem;
+        margin: 0;
+        color: lbh-colour('lbh-text-white');
         line-height: 3rem;
+        background-color: lbh-colour('lbh-black');
 
         &.--primary {
             background-color: lbh-colour('lbh-a01');
