@@ -19,6 +19,21 @@ module.exports = (webpackConfigEnv, argv) => {
                 template: 'src/index.ejs',
                 templateParameters: {
                     isLocal: webpackConfigEnv && webpackConfigEnv.isLocal,
+                    ROOT_APP_URL:
+                        process.env.ROOT_APP_URL ||
+                        '//localhost:9000/mtfh-root-config.js',
+                    HEADER_APP_URL:
+                        process.env.HEADER_APP_URL ||
+                        '//localhost:8090/mtfh-header.js',
+                    AUTH_APP_URL:
+                        process.env.AUTH_APP_URL ||
+                        '//localhost:8080/mtfh-auth.js',
+                    SEARCH_APP_URL:
+                        process.env.SEARCH_APP_URL ||
+                        '//localhost:8070/mtfh-search.js',
+                    PERSON_DETAILS_APP_URL:
+                        process.env.PERSON_DETAILS_APP_URL ||
+                        '//localhost:8060/mtfh-personal-details.js',
                 },
             }),
         ],

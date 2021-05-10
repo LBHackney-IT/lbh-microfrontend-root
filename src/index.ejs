@@ -16,18 +16,17 @@
         }
     </script>
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script">
-    <% if (isLocal) { %>
     <script type="systemjs-importmap">
         {
             "imports": {
-                "@mtfh/root-config": "//localhost:9000/mtfh-root-config.js",
-                "@mtfh/search": "//localhost:8500/mtfh-search.js",
-                "@mtfh/auth": "//localhost:8080/mtfh-auth.js",
-                "@mtfh/header": "//localhost:8090/mtfh-header.js"
+                "@mtfh/root-config": "<%= ROOT_APP_URL %>",
+                "@mtfh/header":  "<%= HEADER_APP_URL %>",
+                "@mtfh/auth":  "<%= AUTH_APP_URL %>",
+                "@mtfh/search": "<%= SEARCH_APP_URL %>",
+                "@mtfh/personal-details": "<%= PERSON_DETAILS_APP_URL %>"
             }
         }
     </script>
-    <% } %>
 
     <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
     <% if (isLocal) { %>
@@ -38,7 +37,7 @@
     <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
     <% } %>
 
-    <template id="single-spa-layout">
+    <template id="single-spa-layout-authorised">
         <single-spa-router containerEl=".mtfh-container">
         <application name="@mtfh/header" loader="header" error="header"></application>
             <main class="lbh-main-wrapper" id="main-content">
@@ -50,6 +49,31 @@
                         <application name="@mtfh/search"></application>
                     </route>
                     <route path="login">
+                        <application name="@mtfh/auth"></application>
+                    </route>
+                    <route path="person">
+                        <application name="@mtfh/personal-details"></application>
+                    </route>
+                </div>
+            </main>
+            <div class="mtfh-footer">
+                <div class="mtfh-footer__section --primary">
+                    <ul class="mtfh-footer__menu">
+                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="#">Report an issue</a></li>
+                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="#">Make a suggestion</a></li>
+                    </ul>
+                </div>
+                <div class="mtfh-footer__section"></div>
+            </div>
+        </single-spa-router>
+    </template>
+
+    <template id="single-spa-layout-public">
+        <single-spa-router containerEl=".mtfh-container">
+        <application name="@mtfh/header" loader="header" error="header"></application>
+            <main class="lbh-main-wrapper" id="main-content">
+                <div class="lbh-container">
+                    <route default>
                         <application name="@mtfh/auth"></application>
                     </route>
                 </div>
@@ -66,16 +90,15 @@
         </single-spa-router>
     </template>
 </head>
+
 <body class="govuk-template__body">
-    <div className="mtfh">
+    <div class="mtfh">
         <div class="mtfh-container">
             <!-- Here are injected the microfrontends -->
         </div>
     </div>
     <script>
-        // eslint-disable-next-line no-undef
         System.import('@mtfh/root-config');
     </script>
-    <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
 </body>
 </html>

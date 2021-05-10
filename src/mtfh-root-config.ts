@@ -7,32 +7,39 @@ import { registerApplication, start } from 'single-spa';
 
 import './root.styles.scss';
 
-const routes = constructRoutes(
-    document.querySelector('#single-spa-layout') as HTMLTemplateElement,
-    {
-        loaders: {
-            header: '<h1>Loading header</h1>',
+System.import('@mtfh/auth').then(() => {
+    const { isAuthorised } = require('@mtfh/auth');
+    const template = isAuthorised() ? 'authorised' : 'public';
+
+    const routes = constructRoutes(
+        document.querySelector(
+            `#single-spa-layout-${template}`
+        ) as HTMLTemplateElement,
+        {
+            loaders: {
+                header: '<h1>Loading header</h1>',
+            },
+            props: {},
+            errors: {
+                header: '<h1>Failed to load header</h1>',
+            },
+        }
+    );
+
+    const applications = constructApplications({
+        routes,
+        loadApp({ name }) {
+            return System.import(name);
         },
-        props: {},
-        errors: {
-            header: '<h1>Failed to load header</h1>',
-        },
+    });
+
+    const layoutEngine = constructLayoutEngine({ routes, applications });
+
+    for (const application of applications) {
+        registerApplication(application);
     }
-);
 
-const applications = constructApplications({
-    routes,
-    loadApp({ name }) {
-        return System.import(name);
-    },
+    layoutEngine.activate();
 });
-
-const layoutEngine = constructLayoutEngine({ routes, applications });
-
-for (const application of applications) {
-    registerApplication(application);
-}
-
-layoutEngine.activate();
 
 start();
