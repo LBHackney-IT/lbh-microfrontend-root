@@ -7,7 +7,7 @@ terraform {
     bucket  = "terraform-state-housing-staging"
     encrypt = true
     region  = "eu-west-2"
-    key     = "services/t-and-l-auth-frontend/state"
+    key     = "services/t-and-l-root-frontend/state"
   }
 }
 resource "aws_s3_bucket" "frontend-bucket-staging" {
