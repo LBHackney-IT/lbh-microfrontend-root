@@ -28,9 +28,10 @@ module "cloudfront-staging" {
   s3_bucket_arn = aws_s3_bucket.frontend-bucket-staging.arn
   s3_bucket_id = aws_s3_bucket.frontend-bucket-staging.id
   orginin_access_identity_desc = "T&L root frontend cloudfront identity"
-  cname_aliases = []
+  cname_aliases = ["manage-my-home-staging.hackney.gov.uk"]
   environment_name = "staging"
   cost_code= "B0811"
   project_name= "MTFH Tenants and Leaseholders"
-  use_cloudfront_cert = true
+  use_cloudfront_cert = false
+  hackney_cert_arn = "arn:aws:acm:us-east-1:087586271961:certificate/baffa134-abb5-4b71-b84f-013e9dd2d044"
 }
