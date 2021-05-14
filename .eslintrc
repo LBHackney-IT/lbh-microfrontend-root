@@ -17,6 +17,7 @@
         "plugin:import/warnings",
         "plugin:import/typescript"
     ],
+    "ignorePatterns": "src/index.ejs",
     "rules": {
         "unicorn/no-useless-undefined": "off",
         "unicorn/no-reduce": "off",

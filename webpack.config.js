@@ -34,6 +34,9 @@ module.exports = (webpackConfigEnv, argv) => {
                     PERSON_DETAILS_APP_URL:
                         process.env.PERSON_DETAILS_APP_URL ||
                         '//localhost:8060/mtfh-personal-details.js',
+                    COMMENTS_APP_URL:
+                        process.env.COMMENTS_APP_URL ||
+                        '//localhost:8050/mtfh-comments.js',
                 },
             }),
         ],

@@ -23,7 +23,8 @@
                 "@mtfh/header":  "<%= HEADER_APP_URL %>",
                 "@mtfh/auth":  "<%= AUTH_APP_URL %>",
                 "@mtfh/search": "<%= SEARCH_APP_URL %>",
-                "@mtfh/personal-details": "<%= PERSON_DETAILS_APP_URL %>"
+                "@mtfh/personal-details": "<%= PERSON_DETAILS_APP_URL %>",
+                "@mtfh/comments": "<%= COMMENTS_APP_URL %>"
             }
         }
     </script>
@@ -53,6 +54,9 @@
                     </route>
                     <route path="person">
                         <application name="@mtfh/personal-details"></application>
+                    </route>
+                    <route path="comment">
+                        <application name="@mtfh/comments"></application>
                     </route>
                 </div>
             </main>
