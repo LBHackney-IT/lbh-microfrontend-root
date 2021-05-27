@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Manage my Home</title>
+    <title>Manage my Home - Hackney Council</title>
     <meta name="importmap-type" content="systemjs-importmap" />
     <script type="systemjs-importmap">
         {
@@ -19,24 +19,23 @@
     <script type="systemjs-importmap">
         {
             "imports": {
+                <% if (isLocal) { %>
+                "@mtfh/tenure": "//localhost:8030/mtfh-tenure.js",
+                <% } %>
                 "@mtfh/root-config": "<%= ROOT_APP_URL %>",
                 "@mtfh/header":  "<%= HEADER_APP_URL %>",
                 "@mtfh/auth":  "<%= AUTH_APP_URL %>",
                 "@mtfh/search": "<%= SEARCH_APP_URL %>",
                 "@mtfh/personal-details": "<%= PERSON_DETAILS_APP_URL %>",
-                "@mtfh/comments": "<%= COMMENTS_APP_URL %>"
+                "@mtfh/comments": "<%= COMMENTS_APP_URL %>",
+                "@mtfh/common": "<%= COMMON_APP_URL %>"
             }
         }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
-    <% if (isLocal) { %>
     <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js"></script>
-    <% } else { %>
-    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
-    <% } %>
 
     <template id="single-spa-layout-authorised">
         <single-spa-router containerEl=".mtfh-container">
@@ -44,9 +43,6 @@
             <main class="lbh-main-wrapper" id="main-content">
                 <div class="lbh-container">
                     <route default>
-                        <h1>Welcome to the default page</h1>
-                    </route>
-                    <route path="search">
                         <application name="@mtfh/search"></application>
                     </route>
                     <route path="login">
@@ -58,13 +54,18 @@
                     <route path="comment">
                         <application name="@mtfh/comments"></application>
                     </route>
+                    <% if (isLocal) { %>
+                    <route path="tenure">
+                        <application name="@mtfh/tenure"></application>
+                    </route>
+                    <% } %>
                 </div>
             </main>
             <div class="mtfh-footer">
                 <div class="mtfh-footer__section --primary">
                     <ul class="mtfh-footer__menu">
-                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="#">Report an issue</a></li>
-                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="#">Make a suggestion</a></li>
+                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://forms.gle/5kUGcRYFwwaZWrGs8" target="_blank">Report an issue</a></li>
+                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://forms.gle/yM7zCKYZcuVzSXkC6" target="_blank">Make a suggestion</a></li>
                     </ul>
                 </div>
                 <div class="mtfh-footer__section"></div>
@@ -85,8 +86,8 @@
             <div class="mtfh-footer">
                 <div class="mtfh-footer__section --primary">
                     <ul class="mtfh-footer__menu">
-                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="#">Report an issue</a></li>
-                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="#">Make a suggestion</a></li>
+                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://forms.gle/5kUGcRYFwwaZWrGs8" target="_blank">Report an issue</a></li>
+                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://forms.gle/yM7zCKYZcuVzSXkC6" target="_blank">Make a suggestion</a></li>
                     </ul>
                 </div>
                 <div class="mtfh-footer__section"></div>

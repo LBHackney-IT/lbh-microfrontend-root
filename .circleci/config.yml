@@ -102,6 +102,7 @@ jobs:
                     export SEARCH_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/search-app-url --query Parameter.Value --output text)
                     export PERSON_DETAILS_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/person-details-app-url --query Parameter.Value --output text)
                     export COMMENTS_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/comments-app-url --query Parameter.Value --output text)
+                    export COMMON_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/common-app-url --query Parameter.Value --output text)
                     yarn build
             - run:
                   name: Deploy to S3
@@ -125,6 +126,7 @@ jobs:
                     export SEARCH_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/search-app-url --query Parameter.Value --output text)
                     export PERSON_DETAILS_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/person-details-app-url --query Parameter.Value --output text)
                     export COMMENTS_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/comments-app-url --query Parameter.Value --output text)
+                    export COMMON_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/common-app-url --query Parameter.Value --output text)
                     yarn build
             - run:
                   name: Deploy to S3
@@ -148,6 +150,7 @@ jobs:
                     export SEARCH_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/search-app-url --query Parameter.Value --output text)
                     export PERSON_DETAILS_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/person-details-app-url --query Parameter.Value --output text)
                     export COMMENTS_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/comments-app-url --query Parameter.Value --output text)
+                    export COMMON_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/common-app-url --query Parameter.Value --output text)
                     yarn build
             - run:
                   name: Deploy to S3

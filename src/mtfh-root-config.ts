@@ -7,8 +7,8 @@ import { registerApplication, start } from 'single-spa';
 
 import './root.styles.scss';
 
-System.import('@mtfh/auth').then(() => {
-    const { isAuthorised } = require('@mtfh/auth');
+System.import('@mtfh/common').then(() => {
+    const { isAuthorised } = require('@mtfh/common');
     const template = isAuthorised() ? 'authorised' : 'public';
 
     const routes = constructRoutes(
