@@ -40,6 +40,9 @@ module.exports = (webpackConfigEnv, argv) => {
                     COMMON_APP_URL:
                         process.env.COMMON_APP_URL ||
                         '//localhost:8040/mtfh-common.js',
+                    TENURE_APP_URL:
+                        process.env.TENURE_APP_URL ||
+                        '//localhost:8030/mtfh-tenure.js',
                 },
             }),
         ],

@@ -1,5 +1,5 @@
 {
-    "name": "@mtfh/root-config",
+    "name": "@mtfh/root",
     "license": "MIT",
     "private": true,
     "scripts": {
