@@ -19,6 +19,7 @@ module.exports = (webpackConfigEnv, argv) => {
                 template: 'src/index.ejs',
                 templateParameters: {
                     isLocal: webpackConfigEnv && webpackConfigEnv.isLocal,
+                    APP_ENV: process.env.APP_ENV || 'production',
                     ROOT_APP_URL:
                         process.env.ROOT_APP_URL ||
                         '//localhost:9000/mtfh-root-config.js',

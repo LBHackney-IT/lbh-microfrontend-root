@@ -103,6 +103,7 @@ jobs:
                     export PERSON_DETAILS_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/person-details-app-url --query Parameter.Value --output text)
                     export COMMENTS_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/comments-app-url --query Parameter.Value --output text)
                     export COMMON_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/common-app-url --query Parameter.Value --output text)
+                    export TENURE_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/tenure-app-url --query Parameter.Value --output text)
                     yarn build
             - run:
                   name: Deploy to S3
@@ -127,6 +128,7 @@ jobs:
                     export PERSON_DETAILS_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/person-details-app-url --query Parameter.Value --output text)
                     export COMMENTS_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/comments-app-url --query Parameter.Value --output text)
                     export COMMON_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/common-app-url --query Parameter.Value --output text)
+                    export TENURE_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/tenure-app-url --query Parameter.Value --output text)
                     yarn build
             - run:
                   name: Deploy to S3
@@ -144,6 +146,7 @@ jobs:
             - run:
                 name: build
                 command: |
+                    export APP_ENV=production
                     export ROOT_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/root-app-url --query Parameter.Value --output text)
                     export HEADER_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/header-app-url --query Parameter.Value --output text)
                     export AUTH_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/auth-app-url --query Parameter.Value --output text)
@@ -151,6 +154,7 @@ jobs:
                     export PERSON_DETAILS_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/person-details-app-url --query Parameter.Value --output text)
                     export COMMENTS_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/comments-app-url --query Parameter.Value --output text)
                     export COMMON_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/common-app-url --query Parameter.Value --output text)
+                    export TENURE_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/tenure-app-url --query Parameter.Value --output text)
                     yarn build
             - run:
                   name: Deploy to S3

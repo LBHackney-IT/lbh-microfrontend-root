@@ -19,15 +19,13 @@
     <script type="systemjs-importmap">
         {
             "imports": {
-                <% if (isLocal) { %>
-                "@mtfh/tenure": "//localhost:8030/mtfh-tenure.js",
-                <% } %>
                 "@mtfh/root-config": "<%= ROOT_APP_URL %>",
                 "@mtfh/header":  "<%= HEADER_APP_URL %>",
                 "@mtfh/auth":  "<%= AUTH_APP_URL %>",
                 "@mtfh/search": "<%= SEARCH_APP_URL %>",
                 "@mtfh/personal-details": "<%= PERSON_DETAILS_APP_URL %>",
                 "@mtfh/comments": "<%= COMMENTS_APP_URL %>",
+                "@mtfh/tenure": "<%= TENURE_APP_URL %>",
                 "@mtfh/common": "<%= COMMON_APP_URL %>"
             }
         }
