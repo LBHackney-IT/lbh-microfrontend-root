@@ -1,9 +1,11 @@
 @import '~lbh-frontend/lbh/base';
-@import '~lbh-frontend/lbh/core/all';
-@import '~lbh-frontend/lbh/objects/all';
 @import '~lbh-frontend/lbh/settings/colour-palette';
+@import '~lbh-frontend/lbh/core/all';
 @import '~lbh-frontend/lbh/helpers/colour';
+@import '~lbh-frontend/lbh/components/lbh-header/header';
+@import '~govuk-frontend/govuk/objects/width-container';
 @import '~lbh-frontend/lbh/objects/width-container';
+@import '~lbh-frontend/lbh/objects/main-wrapper';
 
 html {
     height: 100%;

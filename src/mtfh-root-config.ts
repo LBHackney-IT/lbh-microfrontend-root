@@ -17,7 +17,8 @@ System.import('@mtfh/common').then(() => {
         ) as HTMLTemplateElement,
         {
             loaders: {
-                header: '<h1>Loading header</h1>',
+                header:
+                    '<header class="lbh-header"><div class="lbh-header__main"><div class="lbh-header__title-link lbh-header__logo"></div></div></header>',
             },
             props: {},
             errors: {
