@@ -44,6 +44,9 @@ module.exports = (webpackConfigEnv, argv) => {
                     TENURE_APP_URL:
                         process.env.TENURE_APP_URL ||
                         '//localhost:8030/mtfh-tenure.js',
+                    ACTIVITIES_APP_URL:
+                        process.env.ACTIVITIES_APP_URL ||
+                        '//localhost:8020/mtfh-activity-history.js',
                 },
             }),
         ],
