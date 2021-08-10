@@ -35,7 +35,8 @@
                 "@mtfh/comments": "<%= COMMENTS_APP_URL %>",
                 "@mtfh/tenure": "<%= TENURE_APP_URL %>",
                 "@mtfh/common": "<%= COMMON_APP_URL %>",
-                "@mtfh/activity-history": "<%= ACTIVITIES_APP_URL %>"
+                "@mtfh/activity-history": "<%= ACTIVITIES_APP_URL %>",
+                "@mtfh/property": "<%= PROPERTY_APP_URL %>"
             }
         }
     </script>
@@ -67,6 +68,9 @@
                     <route path="activities">
                         <application name="@mtfh/activity-history"></application>
                     </route>                    
+                    <route path="property">
+                        <application name="@mtfh/property"></application>
+                    </route>                       
                 </div>
             </main>
             <div class="mtfh-footer">

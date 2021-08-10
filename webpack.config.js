@@ -47,6 +47,9 @@ module.exports = (webpackConfigEnv, argv) => {
                     ACTIVITIES_APP_URL:
                         process.env.ACTIVITIES_APP_URL ||
                         '//localhost:8020/mtfh-activity-history.js',
+                    PROPERTY_APP_URL:
+                        process.env.PROPERTY_APP_URL ||
+                        '//localhost:8010/mtfh-property.js',
                 },
             }),
         ],
