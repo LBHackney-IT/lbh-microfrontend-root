@@ -8,9 +8,9 @@ import { registerApplication, start } from 'single-spa';
 import './root.styles.scss';
 
 System.import('@mtfh/common').then(() => {
-    const { isAuthorised } = require('@mtfh/common');
+    const { isAuthorised, getConfiguration } = require('@mtfh/common');
+    getConfiguration();
     const template = isAuthorised() ? 'authorised' : 'public';
-
     const routes = constructRoutes(
         document.querySelector(
             `#single-spa-layout-${template}`
