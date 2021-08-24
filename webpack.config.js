@@ -1,5 +1,6 @@
 const { merge } = require('webpack-merge');
 const singleSpaDefaults = require('webpack-config-single-spa-ts');
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (webpackConfigEnv, argv) => {
@@ -12,7 +13,7 @@ module.exports = (webpackConfigEnv, argv) => {
         disableHtmlGeneration: true,
     });
 
-    return merge(defaultConfig, {
+    const config = merge(defaultConfig, {
         plugins: [
             new HtmlWebpackPlugin({
                 inject: false,
@@ -63,4 +64,17 @@ module.exports = (webpackConfigEnv, argv) => {
             ],
         },
     });
+
+    config.entry = {
+        'root-config': config.entry,
+        'formik': 'formik/dist/formik.esm.js',
+        'yup': 'yup/es',
+    };
+
+    config.output.filename = '[name].[contenthash:8].js';
+    config.output.uniqueName = '[name]';
+    config.output.devtoolNamespace = '[name]';
+    config.externals.push('react');
+
+    return config;
 };

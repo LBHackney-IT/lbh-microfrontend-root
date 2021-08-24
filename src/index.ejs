@@ -9,6 +9,8 @@
     <script type="systemjs-importmap">
         {
             "imports": {
+                "formik": "/<%= htmlWebpackPlugin.files.js[1] %>",
+                "yup": "/<%= htmlWebpackPlugin.files.js[2] %>",
                 <% if (!isLocal) { %>
                 "single-spa": "https://cdnjs.cloudflare.com/ajax/libs/single-spa/5.9.0/umd/single-spa.min.js",
                 "react": "https://cdnjs.cloudflare.com/ajax/libs/react/17.0.1/umd/react.production.min.js",
@@ -27,7 +29,7 @@
     <script type="systemjs-importmap">
         {
             "imports": {
-                "@mtfh/root-config": "<%= ROOT_APP_URL %>?v=<%= VERSION %>",
+                "@mtfh/root-config": "/<%= htmlWebpackPlugin.files.js[0] %>",
                 "@mtfh/header":  "<%= HEADER_APP_URL %>?v=<%= VERSION %>",
                 "@mtfh/auth":  "<%= AUTH_APP_URL %>?v=<%= VERSION %>",
                 "@mtfh/search": "<%= SEARCH_APP_URL %>?v=<%= VERSION %>",
