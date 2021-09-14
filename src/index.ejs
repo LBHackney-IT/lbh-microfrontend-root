@@ -36,13 +36,12 @@
                 "@mtfh/personal-details": "<%= PERSON_DETAILS_APP_URL %>?v=<%= VERSION %>",
                 "@mtfh/comments": "<%= COMMENTS_APP_URL %>?v=<%= VERSION %>",
                 "@mtfh/tenure": "<%= TENURE_APP_URL %>?v=<%= VERSION %>",
-                "@mtfh/common": "<%= COMMON_APP_URL %>?v=<%= VERSION %>",
                 "@mtfh/activity-history": "<%= ACTIVITIES_APP_URL %>?v=<%= VERSION %>",
                 "@mtfh/property": "<%= PROPERTY_APP_URL %>?v=<%= VERSION %>"
             }
         }
     </script>
-
+    <script type="systemjs-importmap" src="<%= COMMON_APP_URL %>/import-map.json"></script>
     <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js"></script>
@@ -54,6 +53,9 @@
                 <div class="container-max-width">
                     <route default>
                         <application name="@mtfh/search"></application>
+                    </route>
+                    <route path="test">
+                        <application name="@mtfh/test"></application>
                     </route>
                     <route path="login">
                         <application name="@mtfh/auth"></application>

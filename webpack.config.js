@@ -41,8 +41,7 @@ module.exports = (webpackConfigEnv, argv) => {
                         process.env.COMMENTS_APP_URL ||
                         '//localhost:8050/mtfh-comments.js',
                     COMMON_APP_URL:
-                        process.env.COMMON_APP_URL ||
-                        '//localhost:8040/mtfh-common.js',
+                        process.env.COMMON_APP_URL || '//localhost:8040',
                     TENURE_APP_URL:
                         process.env.TENURE_APP_URL ||
                         '//localhost:8030/mtfh-tenure.js',
