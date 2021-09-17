@@ -32,16 +32,16 @@
                 "@mtfh/root-config": "/<%= htmlWebpackPlugin.files.js[0] %>",
                 "@mtfh/header":  "<%= HEADER_APP_URL %>?v=<%= VERSION %>",
                 "@mtfh/auth":  "<%= AUTH_APP_URL %>?v=<%= VERSION %>",
-                "@mtfh/search": "<%= SEARCH_APP_URL %>?v=<%= VERSION %>",
                 "@mtfh/personal-details": "<%= PERSON_DETAILS_APP_URL %>?v=<%= VERSION %>",
                 "@mtfh/comments": "<%= COMMENTS_APP_URL %>?v=<%= VERSION %>",
-                "@mtfh/tenure": "<%= TENURE_APP_URL %>?v=<%= VERSION %>",
                 "@mtfh/activity-history": "<%= ACTIVITIES_APP_URL %>?v=<%= VERSION %>",
                 "@mtfh/property": "<%= PROPERTY_APP_URL %>?v=<%= VERSION %>"
-            }
+            } 
         }
     </script>
     <script type="systemjs-importmap" src="<%= COMMON_APP_URL %>/import-map.json"></script>
+    <script type="systemjs-importmap" src="<%= SEARCH_APP_URL %>/import-map.json"></script>
+    <script type="systemjs-importmap" src="<%= TENURE_APP_URL %>/import-map.json"></script>
     <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js"></script>

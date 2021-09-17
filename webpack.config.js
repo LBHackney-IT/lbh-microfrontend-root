@@ -32,8 +32,7 @@ module.exports = (webpackConfigEnv, argv) => {
                         process.env.AUTH_APP_URL ||
                         '//localhost:8080/mtfh-auth.js',
                     SEARCH_APP_URL:
-                        process.env.SEARCH_APP_URL ||
-                        '//localhost:8070/mtfh-search.js',
+                        process.env.SEARCH_APP_URL || '//localhost:8070',
                     PERSON_DETAILS_APP_URL:
                         process.env.PERSON_DETAILS_APP_URL ||
                         '//localhost:8060/mtfh-personal-details.js',
@@ -43,8 +42,7 @@ module.exports = (webpackConfigEnv, argv) => {
                     COMMON_APP_URL:
                         process.env.COMMON_APP_URL || '//localhost:8040',
                     TENURE_APP_URL:
-                        process.env.TENURE_APP_URL ||
-                        '//localhost:8030/mtfh-tenure.js',
+                        process.env.TENURE_APP_URL || '//localhost:8030',
                     ACTIVITIES_APP_URL:
                         process.env.ACTIVITIES_APP_URL ||
                         '//localhost:8020/mtfh-activity-history.js',
