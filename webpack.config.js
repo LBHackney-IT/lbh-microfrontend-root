@@ -26,8 +26,7 @@ module.exports = (webpackConfigEnv, argv) => {
                         process.env.ROOT_APP_URL ||
                         '//localhost:9000/mtfh-root-config.js',
                     HEADER_APP_URL:
-                        process.env.HEADER_APP_URL ||
-                        '//localhost:8090/mtfh-header.js',
+                        process.env.HEADER_APP_URL || '//localhost:8090',
                     AUTH_APP_URL:
                         process.env.AUTH_APP_URL ||
                         '//localhost:8080/mtfh-auth.js',
