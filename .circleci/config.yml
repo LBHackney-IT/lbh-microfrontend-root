@@ -138,6 +138,7 @@ jobs:
                     export TENURE_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/tenure-app-url --query Parameter.Value --output text)
                     export ACTIVITIES_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/activities-app-url --query Parameter.Value --output text)
                     export PROPERTY_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/property-app-url --query Parameter.Value --output text)
+                    export PROCESSES_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/processes-app-url --query Parameter.Value --output text)
                     yarn build
             - run:
                   name: Deploy to S3
@@ -165,6 +166,7 @@ jobs:
                     export TENURE_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/tenure-app-url --query Parameter.Value --output text)
                     export ACTIVITIES_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/activities-app-url --query Parameter.Value --output text)
                     export PROPERTY_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/property-app-url --query Parameter.Value --output text)
+                    export PROCESSES_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/processes-app-url --query Parameter.Value --output text)
                     yarn build
             - run:
                   name: Deploy to S3
@@ -193,6 +195,7 @@ jobs:
                     export TENURE_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/tenure-app-url --query Parameter.Value --output text)
                     export ACTIVITIES_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/activities-app-url --query Parameter.Value --output text)
                     export PROPERTY_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/property-app-url --query Parameter.Value --output text)
+                    export PROCESSES_APP_URL=$(aws ssm get-parameter --name /housing-tl/<<parameters.stage>>/processes-app-url --query Parameter.Value --output text)
                     yarn build
             - run:
                   name: Deploy to S3

@@ -42,6 +42,7 @@
     <script type="systemjs-importmap" src="<%= HEADER_APP_URL %>/import-map.json"></script>
     <script type="systemjs-importmap" src="<%= SEARCH_APP_URL %>/import-map.json"></script>
     <script type="systemjs-importmap" src="<%= TENURE_APP_URL %>/import-map.json"></script>
+    <script type="systemjs-importmap" src="<%= PROCESSES_APP_URL %>/import-map.json"></script>
     <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js"></script>
@@ -78,6 +79,9 @@
                     </route>                    
                     <route path="property">
                         <application name="@mtfh/property"></application>
+                    </route>                       
+                    <route path="processes">
+                        <application name="@mtfh/processes"></application>
                     </route>                       
                 </div>
             </main>

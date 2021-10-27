@@ -48,6 +48,8 @@ module.exports = (webpackConfigEnv, argv) => {
                     PROPERTY_APP_URL:
                         process.env.PROPERTY_APP_URL ||
                         '//localhost:8010/mtfh-property.js',
+                    PROCESSES_APP_URL:
+                        process.env.PROCESSES_APP_URL || '//localhost:8990',
                 },
             }),
         ],
