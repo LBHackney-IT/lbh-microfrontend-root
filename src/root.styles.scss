@@ -30,6 +30,11 @@ main {
     @include govuk-width-container(1280px);
 }
 
+.mtfh-main-wrapper {
+    padding-top: 0;
+    padding-bottom: 3.75rem;
+}
+
 .mtfh-footer {
     &__menu {
         text-align: center;
