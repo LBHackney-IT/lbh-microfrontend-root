@@ -43,8 +43,7 @@ module.exports = (webpackConfigEnv, argv) => {
                     TENURE_APP_URL:
                         process.env.TENURE_APP_URL || '//localhost:8030',
                     ACTIVITIES_APP_URL:
-                        process.env.ACTIVITIES_APP_URL ||
-                        '//localhost:8020/mtfh-activity-history.js',
+                        process.env.ACTIVITIES_APP_URL || '//localhost:8020',
                     PROPERTY_APP_URL:
                         process.env.PROPERTY_APP_URL ||
                         '//localhost:8010/mtfh-property.js',
