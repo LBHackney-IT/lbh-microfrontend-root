@@ -28,8 +28,7 @@ module.exports = (webpackConfigEnv, argv) => {
                     HEADER_APP_URL:
                         process.env.HEADER_APP_URL || '//localhost:8090',
                     AUTH_APP_URL:
-                        process.env.AUTH_APP_URL ||
-                        '//localhost:8080/mtfh-auth.js',
+                        process.env.AUTH_APP_URL || '//localhost:8080',
                     SEARCH_APP_URL:
                         process.env.SEARCH_APP_URL || '//localhost:8070',
                     PERSON_DETAILS_APP_URL:

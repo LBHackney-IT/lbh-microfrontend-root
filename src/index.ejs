@@ -30,7 +30,6 @@
         {
             "imports": {
                 "@mtfh/root-config": "/<%= htmlWebpackPlugin.files.js[0] %>",
-                "@mtfh/auth":  "<%= AUTH_APP_URL %>?v=<%= VERSION %>",
                 "@mtfh/personal-details": "<%= PERSON_DETAILS_APP_URL %>?v=<%= VERSION %>",
                 "@mtfh/comments": "<%= COMMENTS_APP_URL %>?v=<%= VERSION %>",
                 "@mtfh/property": "<%= PROPERTY_APP_URL %>?v=<%= VERSION %>"
@@ -38,6 +37,7 @@
         }
     </script>
     <script type="systemjs-importmap" src="<%= COMMON_APP_URL %>/import-map.json"></script>
+    <script type="systemjs-importmap" src="<%= AUTH_APP_URL %>/import-map.json"></script>
     <script type="systemjs-importmap" src="<%= HEADER_APP_URL %>/import-map.json"></script>
     <script type="systemjs-importmap" src="<%= SEARCH_APP_URL %>/import-map.json"></script>
     <script type="systemjs-importmap" src="<%= TENURE_APP_URL %>/import-map.json"></script>
@@ -85,9 +85,9 @@
             <footer class="mtfh-footer">
                 <div class="mtfh-footer__section --primary">
                     <ul class="mtfh-footer__menu">
-                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://forms.gle/5kUGcRYFwwaZWrGs8" target="_blank">Report an issue</a></li>
-                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://forms.gle/yM7zCKYZcuVzSXkC6" target="_blank">Make a suggestion</a></li>
-                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://drive.google.com/file/d/1BMtaHV7Tz4rKmmUSF1_RPjY9f00wbL5N/view?usp=sharing" target="_blank">Accessibility statement</a></li>
+                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://forms.gle/5kUGcRYFwwaZWrGs8" target="_blank" rel="noopener">Report an issue</a></li>
+                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://forms.gle/yM7zCKYZcuVzSXkC6" target="_blank" rel="noopener">Make a suggestion</a></li>
+                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://drive.google.com/file/d/1BMtaHV7Tz4rKmmUSF1_RPjY9f00wbL5N/view?usp=sharing" target="_blank" rel="noopener">Accessibility statement</a></li>
                     </ul>
                 </div>
                 <div class="mtfh-footer__section"></div>
@@ -108,9 +108,9 @@
             <footer class="mtfh-footer">
                 <div class="mtfh-footer__section --primary">
                     <ul class="mtfh-footer__menu">
-                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://forms.gle/5kUGcRYFwwaZWrGs8" target="_blank">Report an issue</a></li>
-                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://forms.gle/yM7zCKYZcuVzSXkC6" target="_blank">Make a suggestion</a></li>
-                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://drive.google.com/file/d/1BMtaHV7Tz4rKmmUSF1_RPjY9f00wbL5N/view?usp=sharing" target="_blank">Accessibility statement</a></li>
+                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://forms.gle/5kUGcRYFwwaZWrGs8" target="_blank" rel="noopener">Report an issue</a></li>
+                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://forms.gle/yM7zCKYZcuVzSXkC6" target="_blank" rel="noopener">Make a suggestion</a></li>
+                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://drive.google.com/file/d/1BMtaHV7Tz4rKmmUSF1_RPjY9f00wbL5N/view?usp=sharing" target="_blank" rel="noopener">Accessibility statement</a></li>
                     </ul>
                 </div>
                 <div class="mtfh-footer__section"></div>
