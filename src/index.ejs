@@ -5,12 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Manage my Home - Hackney Council</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <% if (!isLocal) { %>
+    <link rel="preconnect" href="<%= COMMON_APP_URL %>">
+    <link rel="preconnect" href="<%= HEADER_APP_URL %>">
+    <link rel="preconnect" href="<%= SEARCH_APP_URL %>">
+    <% } %>
+
     <meta name="importmap-type" content="systemjs-importmap" />
     <script type="systemjs-importmap">
         {
             "imports": {
+                "@mtfh/root-config": "/<%= htmlWebpackPlugin.files.js[0] %>",
                 "formik": "/<%= htmlWebpackPlugin.files.js[1] %>",
                 "yup": "/<%= htmlWebpackPlugin.files.js[2] %>",
+                "date-fns": "/<%= htmlWebpackPlugin.files.js[3] %>",
                 <% if (!isLocal) { %>
                 "single-spa": "https://cdnjs.cloudflare.com/ajax/libs/single-spa/5.9.0/umd/single-spa.min.js",
                 "react": "https://cdnjs.cloudflare.com/ajax/libs/react/17.0.1/umd/react.production.min.js",
@@ -25,14 +36,10 @@
             }
         }
     </script>
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script">
     <script type="systemjs-importmap">
         {
             "imports": {
-                "@mtfh/root-config": "/<%= htmlWebpackPlugin.files.js[0] %>",
-                "@mtfh/personal-details": "<%= PERSON_DETAILS_APP_URL %>?v=<%= VERSION %>",
-                "@mtfh/comments": "<%= COMMENTS_APP_URL %>?v=<%= VERSION %>",
-                "@mtfh/property": "<%= PROPERTY_APP_URL %>?v=<%= VERSION %>"
+                "@mtfh/personal-details": "<%= PERSON_DETAILS_APP_URL %>?v=<%= VERSION %>"
             } 
         }
     </script>
@@ -42,10 +49,9 @@
     <script type="systemjs-importmap" src="<%= SEARCH_APP_URL %>/import-map.json"></script>
     <script type="systemjs-importmap" src="<%= TENURE_APP_URL %>/import-map.json"></script>
     <script type="systemjs-importmap" src="<%= ACTIVITIES_APP_URL %>/import-map.json"></script>
+    <script type="systemjs-importmap" src="<%= COMMENTS_APP_URL %>/import-map.json"></script>
+    <script type="systemjs-importmap" src="<%= PROPERTY_APP_URL %>/import-map.json"></script>
     <script type="systemjs-importmap" src="<%= PROCESSES_APP_URL %>/import-map.json"></script>
-    <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js"></script>
     <style>
         .lbh-skip-link {
             color: #ffffff 
@@ -130,6 +136,9 @@
             <!-- Here are injected the microfrontends -->
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js"></script>
     <script>
         System.import('@mtfh/root-config');
     </script>

@@ -30,8 +30,9 @@ module "cloudfront-development" {
   orginin_access_identity_desc = "T&L root frontend cloudfront identity"
   cname_aliases = ["manage-my-home-development.hackney.gov.uk"]
   environment_name = "development"
-  cost_code= "B0811"
-  project_name= "MTFH Tenants and Leaseholders"
+  cost_code = "B0811"
+  project_name = "MTFH Tenants and Leaseholders"
   use_cloudfront_cert = false
   hackney_cert_arn = "arn:aws:acm:us-east-1:364864573329:certificate/d903d9e2-c3da-482b-8768-916ec09e461f"
+  compress = true
 }

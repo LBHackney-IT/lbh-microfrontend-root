@@ -31,6 +31,22 @@ To load an application into this root application you need to run this root app 
 7. Update application repo to mirror port for local dev.
 8. Submit PR to root with above changes.
 
+## Global Dependencies
+
+Global dependencies are defined in the inline import maps in `src/index.ejs` template.
+These dependencies should either be in `umd` or `systemjs` format for cross MFE imports.
+
+Not all libraries have umd support through cdns but support esm themselves.
+For these particular cases we build a systemjs variant ourselves, see `webpack.config.js`.
+
+Global dependencies we support:
+
+1. react - CDN
+2. react-dom - CDN
+3. formik - bundled
+4. yup - bundled
+5. date-fns (partially) - `src/modules/date-fns`
+
 ## Production build
 
 -   You can create a production build by running `yarn build`.

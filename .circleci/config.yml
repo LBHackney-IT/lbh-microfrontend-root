@@ -34,7 +34,7 @@ references:
 executors:
     node-executor:
         docker:
-            - image: circleci/node:14.15.4-browsers
+            - image: circleci/node:14.17.0-browsers
     docker-terraform:
         docker:
             - image: "hashicorp/terraform:light"
@@ -142,7 +142,9 @@ jobs:
                     yarn build
             - run:
                   name: Deploy to S3
-                  command: aws s3 sync dist s3://lbh-housing-tl-root-frontend-development.hackney.gov.uk/
+                  command: |
+                    aws s3 sync dist s3://lbh-housing-tl-root-frontend-development.hackney.gov.uk/ --exclude "index.html" --cache-control "public, immutable, max-age=31536000"
+                    aws s3 sync dist s3://lbh-housing-tl-root-frontend-development.hackney.gov.uk/ --include "index.html" --cache-control "public, must-revalidate, max-age=0"
     build-deploy-staging:
         executor: node-executor
         environment:
@@ -170,7 +172,9 @@ jobs:
                     yarn build
             - run:
                   name: Deploy to S3
-                  command: aws s3 sync dist s3://lbh-housing-tl-root-frontend-staging.hackney.gov.uk/
+                  command: |
+                    aws s3 sync dist s3://lbh-housing-tl-root-frontend-staging.hackney.gov.uk/ --exclude "index.html" --cache-control "public, immutable, max-age=31536000"
+                    aws s3 sync dist s3://lbh-housing-tl-root-frontend-staging.hackney.gov.uk/ --include "index.html" --cache-control "public, must-revalidate, max-age=0"
     build-deploy-production:
         executor: node-executor
         environment:
@@ -199,7 +203,9 @@ jobs:
                     yarn build
             - run:
                   name: Deploy to S3
-                  command: aws s3 sync dist s3://lbh-housing-tl-root-frontend-production.hackney.gov.uk/
+                  command: |
+                    aws s3 sync dist s3://lbh-housing-tl-root-frontend-production.hackney.gov.uk/ --exclude "index.html" --cache-control "public, immutable, max-age=31536000"
+                    aws s3 sync dist s3://lbh-housing-tl-root-frontend-production.hackney.gov.uk/ --include "index.html" --cache-control "public, must-revalidate, max-age=0"
 
     assume-role-development:
         executor: docker-python
