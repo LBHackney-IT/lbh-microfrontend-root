@@ -36,22 +36,27 @@
             }
         }
     </script>
-    <script type="systemjs-importmap">
-        {
-            "imports": {
-                "@mtfh/personal-details": "<%= PERSON_DETAILS_APP_URL %>?v=<%= VERSION %>"
-            } 
+    <script type="systemjs-importmap" src="<%= COMMON_APP_URL %>/import-map.json" crossorigin="use-credentials"></script>
+    <script type="systemjs-importmap" src="<%= AUTH_APP_URL %>/import-map.json" crossorigin="use-credentials"></script>
+    <script type="systemjs-importmap" src="<%= HEADER_APP_URL %>/import-map.json" crossorigin="use-credentials"></script>
+    <script type="systemjs-importmap" src="<%= SEARCH_APP_URL %>/import-map.json" crossorigin="use-credentials"></script>
+    <script type="systemjs-importmap" src="<%= PERSON_DETAILS_APP_URL %>/import-map.json" crossorigin="use-credentials"></script>
+    <script type="systemjs-importmap" src="<%= TENURE_APP_URL %>/import-map.json" crossorigin="use-credentials"></script>
+    <script type="systemjs-importmap" src="<%= ACTIVITIES_APP_URL %>/import-map.json" crossorigin="use-credentials"></script>
+    <script type="systemjs-importmap" src="<%= COMMENTS_APP_URL %>/import-map.json" crossorigin="use-credentials"></script>
+    <script type="systemjs-importmap" src="<%= PROPERTY_APP_URL %>/import-map.json" crossorigin="use-credentials"></script>
+    <script type="systemjs-importmap" src="<%= PROCESSES_APP_URL %>/import-map.json" crossorigin="use-credentials"></script>
+
+    <% if (!isLocal) { %>
+    <script type="text/javascript">
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/sw.js');
+          });
         }
     </script>
-    <script type="systemjs-importmap" src="<%= COMMON_APP_URL %>/import-map.json"></script>
-    <script type="systemjs-importmap" src="<%= AUTH_APP_URL %>/import-map.json"></script>
-    <script type="systemjs-importmap" src="<%= HEADER_APP_URL %>/import-map.json"></script>
-    <script type="systemjs-importmap" src="<%= SEARCH_APP_URL %>/import-map.json"></script>
-    <script type="systemjs-importmap" src="<%= TENURE_APP_URL %>/import-map.json"></script>
-    <script type="systemjs-importmap" src="<%= ACTIVITIES_APP_URL %>/import-map.json"></script>
-    <script type="systemjs-importmap" src="<%= COMMENTS_APP_URL %>/import-map.json"></script>
-    <script type="systemjs-importmap" src="<%= PROPERTY_APP_URL %>/import-map.json"></script>
-    <script type="systemjs-importmap" src="<%= PROCESSES_APP_URL %>/import-map.json"></script>
+    <% } %>
+    
     <style>
         .lbh-skip-link {
             color: #ffffff 
@@ -136,11 +141,11 @@
             <!-- Here are injected the microfrontends -->
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.11.0/system.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.11.0/extras/amd.min.js"></script>
     <script>
         System.import('@mtfh/root-config');
     </script>
+    
 </body>
 </html>

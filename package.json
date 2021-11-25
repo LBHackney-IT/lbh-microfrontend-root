@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack serve --port 9000 --env isLocal",
     "build": "webpack --mode=production",
-    "lint": "eslint src --ext js,jsx,ts,tsx",
+    "lint": "eslint src --ext js,ts,ejs",
     "test": "jest --passWithNoTests",
     "format": "prettier --write \"./**\""
   },
@@ -28,9 +28,15 @@
     "@mtfh/common": "https://github.com/LBHackney-IT/mtfh-frontend-common.git",
     "date-fns": "2.25.0",
     "formik": "2.2.9",
-    "lbh-frontend": "3.3.0",
+    "lbh-frontend": "^3.6.1",
     "single-spa": "5.9.3",
     "single-spa-layout": "1.6.0",
+    "workbox-cacheable-response": "6.4.1",
+    "workbox-core": "6.4.1",
+    "workbox-expiration": "6.4.1",
+    "workbox-precaching": "6.4.1",
+    "workbox-routing": "6.4.1",
+    "workbox-strategies": "6.4.1",
     "yup": "0.32.9"
   },
   "devDependencies": {
@@ -39,21 +45,22 @@
     "@babel/preset-env": "7.13.15",
     "@babel/preset-typescript": "7.13.0",
     "@babel/runtime": "7.13.10",
-    "@hackney/eslint-config": "^1.3.0",
+    "@hackney/eslint-config": "^1.4.0",
     "@hackney/prettier-config": "^1.0.1",
     "@types/jest": "26.0.22",
     "@types/systemjs": "6.1.0",
     "@types/webpack-env": "1.16.0",
-    "@typescript-eslint/eslint-plugin": "5.3.0",
+    "@typescript-eslint/eslint-plugin": "5.4.0",
     "babel-eslint": "11.0.0-beta.2",
     "cross-env": "7.0.3",
     "css-loader": "5.2.1",
     "eslint": "7.32.0",
     "eslint-config-airbnb": "19.0.0",
-    "eslint-config-airbnb-typescript": "12.3.1",
+    "eslint-config-airbnb-typescript": "16.0.0",
     "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-html": "6.1.2",
-    "eslint-plugin-import": "2.25.2",
+    "eslint-plugin-html": "6.2.0",
+    "eslint-plugin-import": "2.25.3",
+    "eslint-plugin-jest": "25.3.0",
     "eslint-plugin-prettier": "3.4.0",
     "html-webpack-plugin": "5.3.1",
     "husky": "4.3.8",
@@ -76,6 +83,7 @@
     "webpack-cli": "4.9.0",
     "webpack-config-single-spa-ts": "4.1.1",
     "webpack-dev-server": "4.2.1",
-    "webpack-merge": "5.7.3"
+    "webpack-merge": "5.7.3",
+    "workbox-webpack-plugin": "6.4.1"
   }
 }
