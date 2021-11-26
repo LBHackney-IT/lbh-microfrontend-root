@@ -140,4 +140,5 @@ setDefaultHandler(
 );
 
 const routeHandler = createHandlerBoundToURL("/index.html");
-registerRoute(new NavigationRoute(routeHandler));
+// Deny access to fallback routing in cypress `/__/#/`
+registerRoute(new NavigationRoute(routeHandler, { denylist: [/^\/__\//] }));

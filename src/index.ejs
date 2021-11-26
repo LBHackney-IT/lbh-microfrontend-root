@@ -50,9 +50,22 @@
     <% if (!isLocal) { %>
     <script type="text/javascript">
         if ('serviceWorker' in navigator) {
-          window.addEventListener('load', function () {
-            navigator.serviceWorker.register('/sw.js');
-          });
+            var ignore = !!window.Cypress || window.navigator.userAgent.indexOf('Chrome-Lighthouse') !== -1;
+            if (!ignore) {
+                window.addEventListener('load', function () {
+                    window.navigator.serviceWorker.register('/sw.js').catch(function (err) {
+                        console.error('ServiceWorker registration failed:', err);
+                    });
+                });
+            } else {
+                window.navigator.serviceWorker.getRegistration().then(function (registration) {
+                    if (registration) {
+                        registration.unregister();
+                    }
+                }).catch(function (err) {
+                    console.error('ServiceWorker unregistration failed:', err);
+                });
+            }
         }
     </script>
     <% } %>
