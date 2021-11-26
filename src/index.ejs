@@ -47,7 +47,7 @@
     <script type="systemjs-importmap" src="<%= PROPERTY_APP_URL %>/import-map.json" crossorigin="use-credentials"></script>
     <script type="systemjs-importmap" src="<%= PROCESSES_APP_URL %>/import-map.json" crossorigin="use-credentials"></script>
 
-    <% if (!isLocal) { %>
+    <% if (!isLocal && APP_ENV !== 'production') { %>
     <script type="text/javascript">
         if ('serviceWorker' in navigator) {
             var ignore = !!window.Cypress || window.navigator.userAgent.indexOf('Chrome-Lighthouse') !== -1;
