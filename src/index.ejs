@@ -5,16 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Manage my Home - Hackney Council</title>
+    <meta name="importmap-type" content="systemjs-importmap" />
+
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <% if (!isLocal) { %>
-    <link rel="preconnect" href="<%= COMMON_APP_URL %>">
-    <link rel="preconnect" href="<%= HEADER_APP_URL %>">
-    <link rel="preconnect" href="<%= SEARCH_APP_URL %>">
-    <% } %>
-
-    <meta name="importmap-type" content="systemjs-importmap" />
+    <link rel="stylesheet" href="/<%= htmlWebpackPlugin.files.css[0] %>">
     <script type="systemjs-importmap">
         {
             "imports": {
@@ -50,7 +46,8 @@
     <% if (!isLocal && APP_ENV !== 'production') { %>
     <script type="text/javascript">
         if ('serviceWorker' in navigator) {
-            var ignore = !!window.Cypress || window.navigator.userAgent.indexOf('Chrome-Lighthouse') !== -1;
+            var ignoreAgents = ['Chrome-Lighthouse', 'HeadlessChrome'];
+            var ignore = !!window.Cypress || ignoreAgents.some(function (agent) { return window.navigator.userAgent.indexOf(agent) !== -1 });
             if (!ignore) {
                 window.addEventListener('load', function () {
                     window.navigator.serviceWorker.register('/sw.js').catch(function (err) {
@@ -69,96 +66,84 @@
         }
     </script>
     <% } %>
-    
+
     <style>
+        header { margin-top: 0; }
         .lbh-skip-link {
             color: #ffffff 
         }
     </style>
     <template id="single-spa-layout-authorised">
-        <single-spa-router containerEl=".mtfh-container">
-        <application name="@mtfh/header" loader="header" error="header"></application>
-            <main class="mtfh-main-wrapper" id="main-content">
-                <div class="container-max-width">
+        <main class="mtfh-main-wrapper" id="main-content">
+            <div class="container-max-width">
                     <route default>
-                        <application name="@mtfh/search"></application>
+                        <application name="@mtfh/search" loader="spinner"></application>
                     </route>
                     <route path="login">
-                        <application name="@mtfh/auth"></application>
+                        <application name="@mtfh/auth" loader="spinner"></application>
                     </route>
                     <route path="person">
-                        <application name="@mtfh/personal-details"></application>
+                        <application name="@mtfh/personal-details" loader="spinner"></application>
                     </route>
                     <route path="comment">
-                        <application name="@mtfh/comments"></application>
+                        <application name="@mtfh/comments" loader="spinner"></application>
                     </route>
                     <route path="tenure">
-                        <application name="@mtfh/tenure"></application>
+                        <application name="@mtfh/tenure" loader="spinner"></application>
                     </route>
                     <route path="activities">
-                        <application name="@mtfh/activity-history"></application>
+                        <application name="@mtfh/activity-history" loader="spinner"></application>
                     </route>                    
                     <route path="property">
-                        <application name="@mtfh/property"></application>
+                        <application name="@mtfh/property" loader="spinner"></application>
                     </route>                       
                     <route path="processes">
-                        <application name="@mtfh/processes"></application>
-                    </route>                       
+                        <application name="@mtfh/processes" loader="spinner"></application>
+                    </route>   
                 </div>
             </main>
-            <footer class="mtfh-footer">
-                <div class="mtfh-footer__section --primary">
-                    <ul class="mtfh-footer__menu">
-                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://forms.gle/5kUGcRYFwwaZWrGs8" target="_blank" rel="noopener">Report an issue</a></li>
-                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://forms.gle/yM7zCKYZcuVzSXkC6" target="_blank" rel="noopener">Make a suggestion</a></li>
-                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://drive.google.com/file/d/19VOGIul60kxv79VuSu9CEZfnJR-HB0hY/view?usp=sharing" target="_blank" rel="noopener">Accessibility statement</a></li>
-                    </ul>
-                </div>
-                <div class="mtfh-footer__section"></div>
-            </footer>
-        </single-spa-router>
     </template>
 
     <template id="single-spa-layout-public">
-        <single-spa-router containerEl=".mtfh-container">
-            <application name="@mtfh/header" loader="header" error="header"></application>
-            <main class="mtfh-main-wrapper" id="main-content">
-                <div class="container-max-width">
-                    <route default>
-                        <application name="@mtfh/auth"></application>
-                    </route>
+        <main class="mtfh-main-wrapper" id="main-content">
+            <div class="container-max-width">
+            <route default>
+                <application name="@mtfh/auth" loader="spinner"></application>
+            </route>
                 </div>
             </main>
-            <footer class="mtfh-footer">
-                <div class="mtfh-footer__section --primary">
-                    <ul class="mtfh-footer__menu">
-                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://forms.gle/5kUGcRYFwwaZWrGs8" target="_blank" rel="noopener">Report an issue</a></li>
-                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://forms.gle/yM7zCKYZcuVzSXkC6" target="_blank" rel="noopener">Make a suggestion</a></li>
-                        <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://drive.google.com/file/d/19VOGIul60kxv79VuSu9CEZfnJR-HB0hY/view?usp=sharing" target="_blank" rel="noopener">Accessibility statement</a></li>
-                    </ul>
-                </div>
-                <div class="mtfh-footer__section"></div>
-            </footer>
-        </single-spa-router>
+    </template>
+
+    <template id="single-spa-layout-header">
+        <a
+        href="#content"
+        class="govuk-skip-link lbh-skip-link">
+            Skip to main content
+        </a>
+        <header>
+            <application name="@mtfh/header" loader="header"></application>
+        </header>
+    </template>
+
+    <template id="single-spa-layout-footer">
+        <footer class="mtfh-footer">
+            <div class="mtfh-footer__section --primary">
+                <ul class="mtfh-footer__menu">
+                    <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://forms.gle/5kUGcRYFwwaZWrGs8" target="_blank" rel="noopener">Report an issue</a></li>
+                    <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://forms.gle/yM7zCKYZcuVzSXkC6" target="_blank" rel="noopener">Make a suggestion</a></li>
+                    <li class="mtfh-footer__menu-item"><a class="lbh-link" href="https://drive.google.com/file/d/19VOGIul60kxv79VuSu9CEZfnJR-HB0hY/view?usp=sharing" target="_blank" rel="noopener">Accessibility statement</a></li>
+                </ul>
+            </div>
+            <div class="mtfh-footer__section"></div>
+        </footer>
     </template>
 </head>
 
-<body class="govuk-template__body">
-    <a
-    href="#content"
-    class="govuk-skip-link lbh-skip-link">
-        Skip to main content
-    </a>
-    <div class="mtfh js-enabled"> 
-        <div class="mtfh-container">
-            <!-- Here are injected the microfrontends -->
-        </div>
-    </div>
+<body class="govuk-template__body js-enabled">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.11.0/system.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/6.11.0/extras/amd.min.js"></script>
     <script>
         System.import('@mtfh/root-config');
     </script>
-    
 </body>
 </html>

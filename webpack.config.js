@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const { merge } = require("webpack-merge");
 const { InjectManifest } = require("workbox-webpack-plugin");
@@ -25,6 +26,9 @@ module.exports = (webpackConfigEnv, argv) => {
     },
     externals: ["react", "react-dom"],
     plugins: [
+      new MiniCssExtractPlugin({
+        filename: "[name].[contenthash].css",
+      }),
       new HtmlWebpackPlugin({
         inject: false,
         template: "src/index.ejs",
@@ -49,7 +53,7 @@ module.exports = (webpackConfigEnv, argv) => {
       rules: [
         {
           test: /\.s[ac]ss$/i,
-          use: ["style-loader", "css-loader", "sass-loader"],
+          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
         },
       ],
     },
