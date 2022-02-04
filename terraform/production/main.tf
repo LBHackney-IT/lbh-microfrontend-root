@@ -33,6 +33,6 @@ module "cloudfront-production" {
   cost_code = "B0811"
   project_name = "MTFH Tenants and Leaseholders"
   use_cloudfront_cert = false
-  hackney_cert_arn = "arn:aws:acm:us-east-1:282997303675:certificate/a43b1303-83ff-496e-b7a2-a75fa3ebfe87"
+  hackney_cert_arn = "arn:aws:acm:us-east-1:282997303675:certificate/6c6bcc05-1bd7-48ee-b884-99cd0277f65d"
   compress = true
 }
